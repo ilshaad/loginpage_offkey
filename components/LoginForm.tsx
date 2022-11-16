@@ -1,6 +1,10 @@
-// form for user to signup with their email and password
+// form for user to login with their email and password
 
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
+import { authObject } from "../config/firebaseAuth";
+import { useAuthContext } from "../context/AuthUserContext";
 
 export default function LoginForm() {
   // collect user data from form
@@ -9,13 +13,36 @@ export default function LoginForm() {
     password: "",
   });
 
-  // when user submit the sign up form
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const router = useRouter();
+
+  const {authUser} = useAuthContext()
+
+  // when user submit the login form
   const handleLogin = (event: FormEvent) => {
     event.preventDefault();
 
-    console.log(data);
+    signInWithEmailAndPassword(authObject, data.email, data.password)
+      .then((cred) => {
+        setData({ email: "", password: "" });
+
+        // redirect user to /dashboard
+        router.push("/dashboard");
+      })
+      .catch((error) => {
+        console.log(error.message);
+
+        // display error message to user
+        setErrorMessage(error.message);
+      });
   };
 
+    // if already logged in than just return a simple message you ahve already logged in
+    if (authUser) {
+      return <div>You already logged in</div>;
+    }
+  
   return (
     <div>
       <h3>Login form</h3>
@@ -41,6 +68,9 @@ export default function LoginForm() {
 
         <button>submit</button>
       </form>
+
+      {/* display error message from firebase if form was not filled in property */}
+      <div>{errorMessage}</div>
     </div>
   );
 }
