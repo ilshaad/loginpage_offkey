@@ -53,7 +53,6 @@ export default function SignupForm() {
         <input
           type="text"
           value={data.email}
-          // name="signupEmail"
           id="signupEmail"
           onChange={(e) => setData({ ...data, email: e.target.value })}
         />
@@ -62,7 +61,6 @@ export default function SignupForm() {
         <input
           type="password"
           value={data.password}
-          // name="signupPassword"
           id="signupPassword"
           onChange={(e) => setData({ ...data, password: e.target.value })}
         />

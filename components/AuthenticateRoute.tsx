@@ -10,13 +10,7 @@ export default function AuthenticateRoute({
 }: {
   children: ReactNode;
 }) {
-  const { authUser, setAuthUser } = useAuthContext();
-
-  useEffect(() => {
-    console.log("iK this is authenticated route");
-
-    console.log(authUser);
-  });
+  const { authUser } = useAuthContext();
 
   const router = useRouter();
 
@@ -27,15 +21,4 @@ export default function AuthenticateRoute({
   }, [router, authUser]);
 
   return <>{authUser ? children : null}</>;
-  // return <div>{children}</div>;
-
-  // // authenticated routes
-  // if (authUser !== null) {
-  //   return <>{children}</>;
-  // }
-  // // unauthenticated routes return to signup/login route
-  // else {
-  //   router.push("/");
-  //   return <></>;
-  // }
 }

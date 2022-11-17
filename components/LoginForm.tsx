@@ -17,7 +17,7 @@ export default function LoginForm() {
 
   const router = useRouter();
 
-  const {authUser} = useAuthContext()
+  const { authUser } = useAuthContext();
 
   // when user submit the login form
   const handleLogin = (event: FormEvent) => {
@@ -38,11 +38,11 @@ export default function LoginForm() {
       });
   };
 
-    // if already logged in than just return a simple message you ahve already logged in
-    if (authUser) {
-      return <div>You already logged in</div>;
-    }
-  
+  // if already logged in than just return a simple message you ahve already logged in
+  if (authUser) {
+    return <div>You already logged in</div>;
+  }
+
   return (
     <div>
       <h3>Login form</h3>
@@ -52,7 +52,6 @@ export default function LoginForm() {
         <input
           type="text"
           value={data.email}
-          // name="loginEmail"
           id="loginEmail"
           onChange={(e) => setData({ ...data, email: e.target.value })}
         />
@@ -61,7 +60,6 @@ export default function LoginForm() {
         <input
           type="password"
           value={data.password}
-          // name="loginPassword"
           id="loginPassword"
           onChange={(e) => setData({ ...data, password: e.target.value })}
         />

@@ -2,7 +2,7 @@
 
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { AuthUserContext, useAuthContext } from "../context/AuthUserContext";
+import { AuthUserContext } from "../context/AuthUserContext";
 import { useRouter } from "next/router";
 import AuthenticateRoute from "../components/AuthenticateRoute";
 
@@ -12,8 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const router = useRouter();
 
-  const { authUser, setAuthUser } = useAuthContext();
-
+  // signup/login page requires not authentication. But dashboard route is protected & must be authenitcated to be access
   return (
     <AuthUserContext>
       {noAuthRequiredRoutes.includes(router.pathname) ? (
@@ -23,17 +22,6 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </AuthenticateRoute>
       )}
-      {/* <AuthenticateRoute>
-        <Component {...pageProps} />
-      </AuthenticateRoute> */}
-
-      {/* {router.pathname === '/' && !authUser ? (
-              <AuthenticateRoute>
-              <Component {...pageProps} />
-            </AuthenticateRoute>
-      ) :
-
-      } */}
     </AuthUserContext>
   );
 }

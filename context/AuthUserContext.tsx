@@ -1,9 +1,8 @@
 // create context for reusable firebase auth object
 // the auth object will give me the up to date authentication for protected routes
 
-import { Auth, onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import React, {
-  Context,
   createContext,
   ReactNode,
   useContext,
