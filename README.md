@@ -31,6 +31,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - React
 - Typescript / Javascript
 - Next.js
+- Firebase
 - Etc...
 
 ## Main important things I could have included to make the app better:
